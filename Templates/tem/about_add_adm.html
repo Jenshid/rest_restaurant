@@ -1,0 +1,26 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add About Us</title>
+    <link rel="stylesheet" href="{% static 'your_css_file.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Add About Us Content</h2>
+        <form method="POST"action="{% url 'about_add_adm' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="about_content">About Us Content:</label>
+                <textarea name="about_content" class="form-control" id="about_content" rows="6" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Add Content</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

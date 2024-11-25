@@ -1,0 +1,138 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    {% block content %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'about.css' %}">
+        <style>
+          .input-wrapper {
+            position: relative;
+            margin-top: 1rem;
+          }
+          
+          label {
+            position: absolute;
+            top: 1rem;
+            left: 1.25rem;
+            line-height: normal;
+            color: #ffffff;
+            z-index: -1;
+            transition: 0.2s;
+          }
+          
+          input,
+          textarea {
+            padding: 1rem 1.25rem 0.5rem;
+            border: none;
+            border-bottom: 1px solid #ffffff;
+            background-color: transparent;
+            color: #ffffff;
+          }
+          input::placeholder,
+          textarea::placeholder {
+            color: transparent;
+          }
+          input:user-valid,
+          textarea:user-valid {
+            border-color: #00df0e;
+          }
+          input:user-valid + label,
+          textarea:user-valid + label {
+            color: #00df0e;
+          }
+          input:user-invalid,
+          textarea:user-invalid {
+            border-color: #a40000;
+          }
+          input:user-invalid + label,
+          textarea:user-invalid + label {
+            color: #a40000;
+          }
+          input:placeholder-shown,
+          textarea:placeholder-shown {
+            border-color: #ffffff;
+          }
+          input:placeholder-shown + label,
+          textarea:placeholder-shown + label {
+            color: #ffffff;
+          }
+          input:focus,
+          textarea:focus {
+            outline: none;
+            border-color: #ff6000;
+          }
+          input:focus + label,
+          textarea:focus + label {
+            color: #ff6000;
+          }
+          input:focus + label, input:not(:placeholder-shown) + label,
+          textarea:focus + label,
+          textarea:not(:placeholder-shown) + label {
+            top: -0.5rem;
+            left: 0.5rem;
+            font-size: 0.875rem;
+          }
+          
+          textarea {
+            height: 4rem;
+            min-height: 4rem;
+            max-height: 8rem;
+            resize: vertical;
+          }
+          
+          /* Other stuff you can ignore */
+          #form1 {
+            margin-left:18%;
+            margin-top:18%;
+            width: 100%;
+            max-width: 500px;
+            padding: 1rem 1rem 2rem;
+            border: 2px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.5);
+          }
+          
+          body {
+            background-image: url("{% static 'add2_img.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+          }
+        </style>
+    </head>
+
+    <body>
+        <form id="form1" action="{% url 'admin_homepage_add' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="input-wrapper">
+            <input type="text" id="ttle" name="pg_pic"  placeholder="Title" required />
+            <label for="ttle">Title</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="file" id="fle" name="img_bg" required />
+            <label for="fle">Image</label>
+          </div>
+          <div class="input-wrapper">
+            <button type="submit">Add</button>
+          </div>
+        </form>
+
+        <script>
+            {% if messages %}
+                {% for msg in messages %}
+                    alert("{{ msg }}");
+                {% endfor %}
+            {% endif %}
+        </script>
+
+      </body>
+      {% endblock %}
+</html>
+

@@ -1,0 +1,46 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Add Adm</title>
+    <link rel="stylesheet" href="{% static 'your_css_file.css' %}">
+    <style>
+        .readonly-box {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f1f1f1;
+            resize: none; /* Prevents resizing */
+        }
+        .description-section {
+            margin-top: 20px; /* Spacing for better layout */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-center" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+        <div class="form-content" style="border: 1px solid #ddd; padding: 30px; border-radius: 8px; background-color: #f9f9f9;">
+            <div class="description-section">
+                <h3>Description</h3>
+                {% if bmw.description %}
+                    <!-- Display the description content -->
+                    <p class="readonly-box">{{ bmw.description }}</p>
+
+                {% endif %}
+            </div>
+            <button type="button" 
+            style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;"
+            onclick="window.history.back();">
+        Back
+    </button>
+    
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

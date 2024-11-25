@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results for "{{ query }}"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        h2 {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #555;
+        }
+        form {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background: #333;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #555;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .no-results {
+            font-style: italic;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Search Results for "{{ query }}"</h1>
+    </header>
+    <main>
+        <!-- Search Form -->
+      
+
+        <!-- Homepage Content Section -->
+        {% if homepage_results %}
+            <h2>Homepage Content</h2>
+            <ul>
+                {% for item in homepage_results %}
+                    <li>
+                        <strong>{{ item.main_title }}</strong><br>
+                        {{ item.sub_title }}<br>
+                        <a href="{{ item.image.url }}" target="_blank">View Image</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-results">No homepage content found.</p>
+        {% endif %}
+
+        <!-- Restaurants Section -->
+        {% if restaurant_results %}
+            <h2>Restaurants</h2>
+            <ul>
+                {% for restaurant in restaurant_results %}
+                    <li>
+                        <strong>{{ restaurant.name }}</strong><br>
+                        {{ restaurant.description }}<br>
+                        <a href="{% url 'restaurant_detail' restaurant.id %}">View Details</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-results">No restaurants found.</p>
+        {% endif %}
+
+        <!-- Careers Section -->
+        {% if career_results %}
+            <h2>Careers</h2>
+            <ul>
+                {% for career in career_results %}
+                    <li>
+                        <strong>{{ career.job_title }}</strong><br>
+                        {{ career.job_description|truncatechars:100 }}<br>
+                        <a href="{% url 'job_details' career.id %}">View Details</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-results">No careers found.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

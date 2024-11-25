@@ -1,0 +1,203 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #1f293a;
+}
+
+.container {
+  position: relative;
+  width: 256px;
+  height: 256px;
+  margin-left:35%;
+  margin-top:10%;
+}
+
+.container span {
+  position: absolute;
+  left: 0;
+  width: 32px;
+  height: 6px;
+  background: #2c4766;
+  border-radius: 8px;
+  transform-origin: 128px;
+  transform: scale(2.2) rotate(calc(var(--i) * (360deg / 50)));
+  animation: animateBlink 3s linear infinite;
+  animation-delay: calc(var(--i) * (3s / 50));
+}
+
+@keyframes animateBlink {
+  0% {
+    background: #0ef;
+  }
+  25% {
+    background: #2c4766;
+  }
+}
+
+.login-box {
+  position: absolute;
+  width: 400px;
+  /* background: red; */
+}
+
+.login-box form {
+  width: 100%;
+  padding: 0 50px;
+}
+
+h2 {
+  font-size: 2em;
+  color: #0ef;
+  text-align: center;
+}
+
+.input-box {
+  position: relative;
+  margin: 25px 0;
+}
+
+.input-box input {
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #2c4766;
+  outline: none;
+  border-radius: 40px;
+  font-size: 1em;
+  color: #fff;
+  padding: 0 20px;
+  transition: 0.5s ease;
+}
+
+.input-box input:focus,
+.input-box input:valid {
+  border-color: #0ef;
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s ease;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: 1px;
+  font-size: 0.8em;
+  background: #1f293a;
+  padding: 0 6px;
+  color: #0ef;
+}
+
+.forgot-pass {
+  margin: -15px 0 10px;
+  text-align: center;
+}
+
+.forgot-pass a {
+  font-size: 0.85em;
+  color: #fff;
+  text-decoration: none;
+}
+
+.forgot-pass a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  width: 100%;
+  height: 45px;
+  background: #0ef;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #1f293a;
+  font-weight: 600;
+}
+
+.signup-link {
+  margin: 20px 0 10px;
+  text-align: center;
+}
+
+.signup-link a {
+  font-size: 1em;
+  color: #0ef;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+</style>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h2>Edit Profile</h2>
+
+            <!-- Display success message if exists -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Form for updating admin profile -->
+            <form method="POST" action="{% url 'admin_edit' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-box">
+                    <input type="text" id="name" name="user_name" value="{{ bb.user.username }}" required>
+                    <label>User Name</label>
+                </div>
+
+                <div class="input-box">
+                    <input type="email" id="email" name="email" value="{{ bb.user.email }}" required>
+                    <label>Email</label>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" id="password" name="password" value="{{ bb.Password }}" required>
+                    <label>New Password</label>
+                </div>
+
+              
+
+                <button class="btn" type="submit">Save</button>
+
+            </form> 
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

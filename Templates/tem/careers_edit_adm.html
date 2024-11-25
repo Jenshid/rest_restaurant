@@ -1,0 +1,198 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Career</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(#380036, #0cbaba);
+        }
+
+        .container {
+            max-width: 650px;
+            padding: 28px;
+            margin: 7% auto;
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            font-size: 26px;
+            font-weight: bold;
+            text-align: left;
+            color: #fff;
+            padding-bottom: 8px;
+            border-bottom: 1px solid silver;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 95%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .form-group input:is(:focus, :valid),
+        .form-group textarea:is(:focus, :valid),
+        .form-group select:is(:focus, :valid) {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            display: inline-block;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-image: linear-gradient(to right, #aa076b, #61045f);
+        }
+
+        .btn-primary:hover {
+            background-image: linear-gradient(to right, #61045f, #aa076b);
+        }
+
+        .btn-secondary {
+            background-color: gray;
+        }
+
+        .btn-secondary:hover {
+            background-color: darkgray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Edit Career</h2>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}" style="color: green;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form method="POST" action="{% url 'careers_edit_adm' cvb.id %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="brand">Brand:</label>
+                <input type="text" id="brand" name="brand" value="{{ cvb.brand }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <input type="text" id="department" name="department" value="{{ cvb.department }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="job_title">Job Title:</label>
+                <input type="text" id="job_title" name="job_title" value="{{ cvb.job_title }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contact_email">Contact Email:</label>
+                <input type="email" id="contact_email" name="contact_email" value="{{ cvb.contact_email }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="job_code">Job Code:</label>
+                <input type="text" id="job_code" name="job_code" value="{{ cvb.job_code }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="employment_type">Employment Type:</label>
+                <select id="employment_type" name="employment_type">
+                    <option value="Permanent" {% if cvb.employment_type == 'Permanent' %}selected{% endif %}>Permanent</option>
+                    <option value="Contract" {% if cvb.employment_type == 'Contract' %}selected{% endif %}>Contract</option>
+                    <option value="none" {% if cvb.employment_type == 'none' %}selected{% endif %}>None</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="age_limit">Age Limit:</label>
+                <input type="number" id="age_limit" name="age_limit" value="{{ cvb.age_limit }}">
+            </div>
+
+            <div class="form-group">
+                <label for="place">Place:</label>
+                <input type="text" id="place" name="place" value="{{ cvb.place }}">
+            </div>
+
+            <div class="form-group">
+                <label for="salary_range">Salary Range:</label>
+                <input type="text" id="salary_range" name="salary_range" value="{{ cvb.salary_range }}">
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="job_description">Job Description:</label>
+                <textarea id="job_description" name="job_description" rows="4" required>{{ cvb.job_description }}</textarea>
+            </div>
+
+           
+            <div class="form-group">
+                <label for="job_responsibilities">Job Responsibilities:</label>
+                <textarea id="job_responsibilities" name="job_responsibilities" rows="4">{{ cvb.job_responsibilities }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="job_requirement">Job Requirement:</label>
+                <textarea id="job_requirement" name="job_requirement" rows="4">{{ cvb.job_requirement }}</textarea>
+            </div>
+
+          
+            
+
+           
+
+            <button type="submit" class="btn-primary">Save Changes</button>
+            <a href="{% url 'careers_adm' %}" class="btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+</body>
+</html>
+{% endblock %}

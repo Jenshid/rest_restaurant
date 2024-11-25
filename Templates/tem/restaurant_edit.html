@@ -1,0 +1,126 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Edit Homepage</title>
+    <style>
+        .container-center {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-content {
+            border: 1px solid #ddd;
+            padding: 30px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .messages {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .messages li {
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background: #e6ffe6;
+            color: green;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn-confirm {
+            background-color: #008CBA;
+            color: white;
+        }
+        .btn-back {
+            background-color: #555;
+            color: white;
+        }
+        .image-preview {
+            max-width: 400px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+{% block title %}
+    Edit Homepage Content
+{% endblock %}
+
+{% block content %}
+<div class="container-center">
+    <div class="form-content">
+
+        <!-- Display Success or Error Messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Preview the current homepage content -->
+        <div style="margin-bottom: 20px;">
+            {% if gtg %}
+                    <div class="text-center">
+                        <h3>Current Image</h3>
+                        <img src="{{ gtg.image.url }}" alt="{{ gtg.main_title }}" class="image-preview" style="width:200px;height:200px">
+                    </div>
+            {% else %}
+                <p style="text-align: center; color: #999;">No image uploaded yet.</p>
+            {% endif %}
+        </div>
+
+        <!-- Edit Form -->
+        <form method="POST" action="{% url 'admin_homepage_edit' gtg.id %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Edit Title -->
+            <div class="form-group">
+                <label for="title">Edit Title</label>
+                <input type="text" name="pg_pic" id="title" value="{{ gtg.main_title }}" class="form-control" required>
+            </div>
+
+            <!-- Edit Image -->
+            <div class="form-group">
+                <label for="image">Edit Image</label>
+                <input type="file" name="img_bg" id="image" class="form-control">
+            </div>
+
+            <!-- Button Container -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                <!-- Confirm Button -->
+                <button type="submit" class="btn btn-save" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                    Save
+                </button>
+                <!-- Back Button -->
+               
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chairman Add Adm</title>
+    <link rel="stylesheet" href="#">
+</head>
+<body>
+    <div class="container-center" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+        <div class="form-content" style="border: 1px solid #ddd; padding: 30px; border-radius: 8px; background-color: #f9f9f9;">
+    <div class="container mt-5">
+
+
+<div class="container">
+    <div class="form-content">
+        <h2>Add Image to {{ ert.name }}</h2>
+
+        <!-- Display Success or Error Messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Image Upload Form -->
+        <form method="POST"action="{% url 'img_rest_add_adm' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div style="margin-top: 20px;">
+                <label for="image">Upload New Image:</label>
+                <input type="file" id="image" name="image" required>
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button type="submit" class="btn btn-add">Add Image</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+</div>
+</div>
+</body>
+</html>

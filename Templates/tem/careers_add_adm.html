@@ -1,0 +1,63 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add About Us</title>
+    <link rel="stylesheet" href="{% static 'your_css_file.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Add About Us Content</h2>
+        <form method="POST"action="{% url 'careers_add_adm' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="brand">Brand:</label>
+    <input type="text" id="brand" name="brand" required><br>
+
+    <label for="department">Department:</label>
+    <input type="text" id="department" name="department" required><br>
+
+    <label for="job_title">Job Title:</label>
+    <input type="text" id="job_title" name="job_title" required><br>
+
+    <label for="job_description">Job Description:</label>
+    <textarea id="job_description" name="job_description" required></textarea><br>
+
+    <label for="contact_email">Contact Email:</label>
+    <input type="email" id="contact_email" name="contact_email" required><br>
+
+    <label for="job_code">Job Code:</label>
+    <input type="text" id="job_code" name="job_code" required><br>
+
+    <label for="job_responsibilities">Job Responsibilities:</label>
+    <textarea id="job_responsibilities" name="job_responsibilities" required></textarea><br>
+
+    <label for="job_requirement">Job Requirement:</label>
+    <textarea id="job_requirement" name="job_requirement" required></textarea><br>
+
+    <label for="salary_range">Salary Range:</label>
+    <input type="text" id="salary_range" name="salary_range" required><br>
+
+    <label for="age_limit">Age Limit:</label>
+    <input type="text" id="age_limit" name="age_limit"><br>
+
+    <label for="place">Place:</label>
+    <input type="text" id="place" name="place" required><br>
+
+    <label for="employment_type">Employment Type:</label>
+    <select id="employment_type" name="employment_type" class="form-control">
+        <option value="Permanent">Permanent</option>
+        <option value="Contract">Contract</option>
+        <option value="none">None</option>
+    </select><br>
+
+    <button type="submit">Add Career</button>
+</form>
+
+    </div>
+</body>
+</html>
+{% endblock %}

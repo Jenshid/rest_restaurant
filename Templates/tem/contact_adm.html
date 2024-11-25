@@ -1,0 +1,115 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Contact Adm {% endblock %}</title>
+    <style>
+        /* Add any custom styles here */
+    </style>
+</head>
+<body>
+{% block content %}
+<div class="container-center" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+    <div class="form-content" style="border: 1px solid #ddd; padding: 30px; border-radius: 8px; background-color: #f9f9f9;">
+
+        <!-- Display Success or Error Messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}" style="color: green;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Display Restaurant Details -->
+        <div style="margin-bottom: 20px;">
+            {% if bmw %}
+                {% for t in bmw %}
+                    <div style="padding: 20px; margin: 20px auto; border-radius: 8px; background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); max-width: 600px; text-align: left; border-left: 5px solid #008CBA;">
+                        <h3 style="font-size: 24px; color: #333333; margin-bottom: 10px;">Title: {{ t.title }}</h3>
+                        <p style="font-size: 16px; color: #555555; margin: 5px 0;">Place: {{ t.place }}</p>
+                        <p style="font-size: 16px; color: #555555; margin: 5px 0;">Email: {{ t.email }}</p>
+                        <p style="font-size: 16px; color: #555555; margin: 5px 0;">Phone: {{ t.phone }}</p>
+                        <p style="font-size: 16px; color: #555555; margin: 5px 0;">Contact Email: {{ t.contact_email }}</p>
+
+                        <!-- Display Social Media Links if Available -->
+                        <div style="margin-top: 20px; padding-top: 10px; border-top: 1px solid #ddd;">
+                            {% if t.pinterest_link %}
+                                <p style="font-size: 16px; margin: 5px 0;">
+                                    Pinterest_link: 
+                                    <a href="{{ t.pinterest_link }}" target="_blank" style="color: #bd081c; text-decoration: none; font-weight: bold;">
+                                        {{ t.pinterest_link }}
+                                    </a>
+                                </p>
+                            {% endif %}
+                            {% if t.instagram_link %}
+                                <p style="font-size: 16px; margin: 5px 0;">
+                                    Instagram: 
+                                    <a href="{{ t.instagram_link }}" target="_blank" style="color: #E1306C; text-decoration: none; font-weight: bold;">
+                                        {{ t.instagram_link }}
+                                    </a>
+                                </p>
+                            {% endif %}
+                            {% if t.facebook_link %}
+                                <p style="font-size: 16px; margin: 5px 0;">
+                                    Facebook: 
+                                    <a href="{{ t.facebook_link }}" target="_blank" style="color: #3b5998; text-decoration: none; font-weight: bold;">
+                                        {{ t.facebook_link }}
+                                    </a>
+                                </p>
+                            {% endif %}
+                            {% if t.twitter_link %}
+                                <p style="font-size: 16px; margin: 5px 0;">
+                                    Twitter: 
+                                    <a href="{{ t.twitter_link }}" target="_blank" style="color: #1DA1F2; text-decoration: none; font-weight: bold;">
+                                        {{ t.twitter_link }}
+                                    </a>
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Delete Button -->
+                    <button type="button" 
+                        onclick="if(confirm('Are you sure you want to delete this content?')) location.href='{% url 'contact_delete_adm' t.id %}'"
+                        style="background-color: #f44336; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                        Delete
+                    </button>
+
+                    <!-- Other Action Buttons -->
+                    <button type="button" 
+                            onclick="location.href='{% url 'contact_description_adm' t.id %}'"
+                            style="background-color: #ffee00; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                        Description
+                    </button>
+                    
+                    <!-- Edit Button -->
+                    <a href="{% url 'contact_edit_adm' t.id %}">
+                        <input type="button" 
+                        value="Edit" 
+                        style="background-color: #008CBA; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;"> 
+                    </a>
+
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; color: #999;">No Contact Details uploaded yet.</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                    <!-- Add Button -->
+                    <button type="button" 
+                            onclick="location.href='{% url 'contact_add_adm' %}'"
+                            style="background-color: #08c59a; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                        Add
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %} Manage Restaurant Adm{% endblock %}</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+{% block content %}
+<div class="container-center" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+    <div class="form-content" style="border: 1px solid #ddd; padding: 30px; border-radius: 8px; background-color: #f9f9f9;">
+
+        <!-- Display Success or Error Messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}" style="color: green;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Preview the current homepage content -->
+        <div style="margin-bottom: 20px;">
+            {% if ert %}
+                {% for t in ert %}
+                    <div class="mt-4 text-center"><br>
+                        <h3>Restaurant Name :  {{ t.name }}</h3><br>
+                        
+                        <!-- Display the Restaurant Image -->
+                        {% if t.image %}
+                            <img src="{{ t.image.url }}" alt="{{ t.name }}" class="img-fluid" style="max-width: 400px;">
+                        {% endif %}
+                        
+                        <!-- Display the Restaurant Logo -->
+                        {% if t.logo %}
+                            <img src="{{ t.logo.url }}" alt="{{ t.name }} Logo" class="img-fluid" style="max-width: 200px; margin-top: 10px;">
+                        {% endif %}
+                        
+
+                        <!-- Display the Location Type -->
+                        <p style="margin-top: 10px;">
+                            Location: {{ t.get_location_type_display }}
+                        </p><br>
+
+        
+                        <!-- Display Homepage and Brand Page Orders -->
+                        <p>Homepage Order: {{ t.home_page_order }}</p><br>
+                        <p>Brand Page Order: {{ t.brand_page_order }}</p><br>
+                        <p style="margin-top: 10px;">Description : {{ t.description }}</p><br>
+        
+                        <!-- Display Social Media Links if Available -->
+                        <div style="margin-top: 10px;">
+                            {% if t.reservation_url %}
+                                <p>
+                                    Make a Reservation: 
+                                    <a href="{{ t.reservation_url }}" target="_blank" style="color: #008CBA;">
+                                        {{ t.reservation_url }}
+                                    </a>
+                                </p><br>
+                            {% endif %}
+                        
+                            {% if t.instagram_link %}
+                                <p>
+                                    Instagram: 
+                                    <a href="{{ t.instagram_link }}" target="_blank" style="color: #E1306C;">
+                                        {{ t.instagram_link }}
+                                    </a>
+                                </p><br>
+                            {% endif %}
+                        
+                            {% if t.facebook_link %}
+                                <p>
+                                    Facebook: 
+                                    <a href="{{ t.facebook_link }}" target="_blank" style="color: #3b5998;">
+                                        {{ t.facebook_link }}
+                                    </a>
+                                </p><br>
+                            {% endif %}
+                        
+                            {% if t.twitter_link %}
+                                <p>
+                                    Twitter: 
+                                    <a href="{{ t.twitter_link }}" target="_blank" style="color: #1DA1F2;">
+                                        {{ t.twitter_link }}
+                                    </a>
+                                </p><br>
+                            {% endif %}
+
+                        </div>
+                        
+                    </div>
+        
+                    <!-- Delete Button -->
+                    <button type="button" 
+                        onclick="if(confirm('Are you sure you want to delete this content?')) location.href='{% url 'manage_restaurant_delete_adm' t.id %}'"
+                        style="background-color: #f44336; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                        Delete
+                    </button>
+
+                  
+                    <button type="button" 
+                    onclick= "location.href='{% url 'restaurant_description_adm' t.id %}'"
+                    style="background-color: #ffee00; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                    Description
+                   </button>
+
+                   <button type="button" 
+                             onclick= "location.href='{% url 'img_rest_adm' t.id %}'"
+                             style="background-color: #10ff00; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                             Image
+                            </button>
+                  
+                     
+                    <!-- Edit Button -->
+                    <a href="{% url 'manage_restaurant_edit_adm' t.id %}">
+                        <input type="button" 
+                        value="Edit" 
+                        style="background-color: #008CBA; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;"> 
+                    </a>
+
+                    
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; color: #999;">No restaurant information uploaded yet.</p>
+            {% endif %}
+        </div>
+        
+
+
+            <!-- Button Container (for Add, Edit, Delete buttons) -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                <!-- Add Button -->
+                <button type="button" 
+                        onclick="location.href='{% url 'manage_restaurant_add_adm' %}'"
+                        style="background-color: #08c59a; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                    Add
+                </button>
+
+            </div>
+
+        <!-- Preview the current homepage content -->
+        <div style="margin-top: 40px;">
+            <h3 style="color: #333;">{{ homepage_content.main_title }}</h3>
+            <p style="color: #666;">{{ homepage_content.sub_title }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

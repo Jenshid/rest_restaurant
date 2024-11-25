@@ -1,0 +1,175 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About adm</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+
+    {% block title %}
+   About Adm
+{% endblock %}
+
+{% block content %}
+<div class="container-center" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+    <div class="form-content" style="border: 1px solid #ddd; padding: 60px; border-radius: 8px; background-color: #f9f9f9;">
+      
+        <main>
+            <!-- Search Form -->
+          
+    
+            <!-- Homepage Content Section -->
+            {% if homepage_results %}
+                <h2>Homepage Content</h2><br>
+                <ul>
+                    {% for item in homepage_results %}
+                        <li>
+                            <strong>{{ item.main_title }}</strong><br>
+                            {{ item.sub_title }}<br>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+    
+            <!-- Restaurants Section -->
+            {% if restaurant_results %}
+                <h2>Restaurants</h2><br>
+                <ul>
+                    {% for restaurant in restaurant_results %}
+                        <li>
+                            <strong>{{ restaurant.name }}</strong><br>
+                            {{ restaurant.description }}<br>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+    
+            <!-- Careers Section -->
+            {% if career_results %}
+                <h2>Careers</h2><br>
+                <ul>
+                    {% for career in career_results %}
+                        <li>
+                            <strong>{{ career.job_title }}</strong><br>
+                            {{ career.job_description|truncatechars:100 }}<br>
+                            {{ career.brand}}<br>
+                            {{ career.department}}<br>
+                            {{ career.place}}<br>
+                            {{ career.employment_type}}<br>
+                            {{ career.contact_email}}<br>
+                            {{ career.job_code}}<br>
+
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+
+            {% if Subscription_results %}
+            <h2>Subscription</h2><br>
+            <ul>
+                {% for Subscription in Subscription_results %}
+                    <li>
+                       {{ Subscription.email }}<br>
+                        
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if AboutUs_results %}
+    <h2>About Us</h2>
+    <ul>
+        {% for item in AboutUs_results %}
+            <li>
+                {{ item.content }} <br>
+
+            </li>
+        
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if Ourpeople_results %}
+    <h2>Our People</h2>
+    <ul>
+        {% for item in Ourpeople_results %}
+            <li>
+                {{ item.content }} <br>
+            </li>
+        
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if Mission_vision_results %}
+    <h2>Mission and Vision</h2>
+    <ul>
+        {% for item in Mission_vision_results %}
+            <li>
+                {{ item.content }} <br>
+            </li>
+       
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if chairman_results %}
+    <h2>Chairman</h2>
+    <ul>
+        {% for item in chairman_results %}
+            <li>
+                {{ item.content }} <br>
+
+            </li>
+       
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if Media_media_results %}
+    <h2>Media Content</h2>
+    <ul>
+        {% for item in Media_media_results %}
+            <li>{{ item.title }}  <br>
+                 {{ item.content }}
+                </li>
+        
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if JobApplication_results %}
+    <h2>Job Applications</h2>
+    <ul>
+        {% for item in JobApplication_results %}
+            <li>{{ item.full_name }} <br>
+                 {{ item.position }} <br>
+                 {{ item.email }} <br>
+                 {{ item.phone_number }} <br>
+                 {{ item.address }} <br>
+                 {{ item.career }} <br>
+                 {{ item.cv }} <br>
+                
+                </li>
+        
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+
+
+
+        </main>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chairman Add Adm</title>
+    <link rel="stylesheet" href="{% static 'your_css_file.css' %}">
+</head>
+<body>
+    <div class="container-center" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+        <div class="form-content" style="border: 1px solid #ddd; padding: 30px; border-radius: 8px; background-color: #f9f9f9;">
+    <div class="container mt-5">
+        <h2 class="text-center">Chairman Add Content</h2>
+        <form method="POST"action="{% url 'chairman_add_adm' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="about_content"> Content:</label>
+                <textarea name="chairman_content" class="form-control" id="chairman_content" rows="7"  required></textarea>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                <!-- Add Button -->
+                <button type="submit"
+                        style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                    Add
+                </button>
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>
+{% endblock %}

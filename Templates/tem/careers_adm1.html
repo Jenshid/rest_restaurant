@@ -1,0 +1,246 @@
+{% extends 'tem/nave.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  {% block content %}
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Career adm</title>
+    <style>
+     /* background-image: photo by @Milad Fakurian on Unsplash */
+
+body {
+  
+  flex-direction: column;
+ 
+  justify-content: center;
+ 
+  background-image: url("https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=4000&q=80");
+  background-position: center;
+  background-size: cover;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  color: #fff;
+}
+
+h1 {
+  margin-bottom: 3rem;
+}
+
+.login-form {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  min-width: 260px;
+  margin-left:20%;
+  margin-right:20%;
+  margin-top:5%;
+}
+
+.login-input-container {
+  margin-top: 2rem;
+}
+
+label {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.input-content {
+  height: 60px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  font-size: 16px;
+  width: 100%;
+  color: #fff;
+  margin-left:-5%;
+}
+
+label {
+  position: absolute;
+  margin-left: -30px;
+  pointer-events: none;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+i.career-info {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.career-info h3 {
+  margin-bottom: 0.5rem;
+}
+
+.career-info p {
+  margin-bottom: 0.5rem;
+}
+
+.edit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+
+
+.info-box {
+  display: inline-block;         /* Make it an inline-block so it wraps text but behaves like a block */
+  padding: 8px 12px;             /* Add some padding around the content */
+      /* Light gray background */
+  border: 1px solid #ddd;        /* Add a light border */
+  border-radius: 5px;            /* Rounded corners for the box */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted look */
+  font-weight: normal;           /* Ensure the text is regular weight */
+  max-width: 400px;              /* Limit the width of each box */
+  word-wrap: break-word;         /* Allow long words to break and wrap in the box */
+  white-space: normal;           /* Prevent text from getting cut off */
+}
+
+.info-box:hover {
+  
+  border-color: #008CBA;      /* Change the border to blue on hover */
+  transition: all 0.3s ease;  /* Smooth transition effect */
+}
+
+    </style>
+</head>
+
+    <body>
+      <div style="margin-bottom: 20px;">
+        {% if cvb %}
+            {% for t in cvb %}
+        <div class="login-form">
+          <h1  style="font-family: Elephant; font-size: 25px;  margin-bottom:12%; margin-left:30%; margin-top:5%; "> CAREERS</h1>
+          <div class="login-input-container">
+            <p><strong>Brand :</strong> <span class="info-box">{{ t.brand }}</span></p><br>
+            <p><strong>Job_Title:</strong> <span class="info-box">{{ t.job_title }}</span></p><br>
+            <p><strong>Department :</strong> <span class="info-box">{{ t.department }}</span></p><br>
+            <p><strong>Job Title :</strong> <span class="info-box">{{ t.job_title }}</span></p><br>
+            <p><strong>Job Description:</strong> <span class="info-box">{{ t.job_description }}</span></p><br>
+            <p><strong>Contact Email :</strong> <span class="info-box">{{ t.contact_email }}</span></p><br>
+            <p><strong>Job Code :</strong> <span class="info-box">{{ t.job_code }}</span></p><br>
+            <p><strong>Job Responsibilities :</strong> <span class="info-box">{{ t.job_responsibilities }}</span></p><br>
+            <p><strong>Job Requirement :</strong> <span class="info-box">{{ t.job_requirement }}</span></p><br>
+            <p><strong>Salary Range :</strong> <span class="info-box">{{ t.salary_range }}</span></p><br>
+            <p><strong>Age Limit :</strong> <span class="info-box">{{ t.age_limit }}</span></p><br>
+            <p><strong>Place :</strong> <span class="info-box">{{ t.place }}</span></p><br>
+            <p><strong>Employment Type:</strong> <span class="info-box">{{ t.get_employment_type_display }}</span></p><br>
+
+            
+            <!-- Display the content in a textarea for editing -->
+      
+          </div>
+          
+          <button type="button" 
+          onclick="location.href='{% url 'views_application_adm' t.id %}'"
+          style="background-color: #ffee00; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+          View Application
+      </button>
+      
+     <a href="{% url 'careers_edit_adm' t.id %}">
+      <input type="button" 
+      value="Edit" 
+      style="background-color:  #06D001; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;"> 
+     </a>
+  
+     <button type="button" 
+          onclick="if(confirm('Are you sure you want to delete this content?')) location.href='{% url 'careers_delete_adm' t.id %}'"
+          style="background-color: #FF004D; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+          Delete
+      </button>
+  
+  </div>
+{% endfor %}
+{% else %}
+<p>No content available.</p>
+{% endif %}
+</div>
+
+
+
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+<!-- Add Button -->
+<button type="button" 
+  onclick="location.href='{% url 'careers_add_adm' %}'"
+  style="background-color:  #08FFC8; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+Add
+</button>
+
+
+</div>
+
+</div>
+
+<!-- Edit Form -->
+
+
+<!-- Preview the current homepage content -->
+
+</div>
+</div>
+
+
+      </body>
+      <script>
+                        const checkBox = document.getElementById("checkbox");
+                const checkBoxIco = document.getElementById("checkbox-ico").style;
+
+                const onClickCheckBox = () => {
+                if (checkBoxIco.display === "none" || !checkBoxIco.display) {
+                    checkBoxIco.display = "inline-block";
+                } else {
+                    checkBoxIco.display = "none";
+                }
+                };
+
+                checkBox.addEventListener("click", onClickCheckBox);
+
+
+
+                $(document).ready(function() {
+                  $(".edit-button").click(function() {
+                      // Replace the paragraph elements with input fields
+                      $(this).parent().find("p").each(function() {
+                          var text = $(this).text();
+                          var input = $("<input type='text' value='" + text + "' />");
+                          $(this).replaceWith(input);
+                      });
+              
+                      // Add a "Save" button
+                      $(this).text("Save");
+                      $(this).click(function() {
+                          // Save the changes (e.g., send to server, update database)
+                          // ...
+              
+                          // Restore the original content
+                          $(this).parent().find("input").each(function() {
+                              var text = $(this).val();
+                              var p = $("<p><strong>" + $(this).prev().text() + ":</strong> " + text + "</p>");
+                              $(this).replaceWith(p);
+                          });
+              
+                          // Change the button text back to "Edit"
+                          $(this).text("Edit");
+                      });
+                  });
+              });
+      </script>
+      {% endblock %}
+</html>

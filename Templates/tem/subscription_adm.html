@@ -1,0 +1,54 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Subscribe Adm{% endblock %}</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+
+
+
+{% block content %}
+<div class="container-center" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+    <div class="form-content" style="border: 1px solid #ddd; padding: 30px; border-radius: 8px; background-color: #f9f9f9;">
+
+        <!-- Display Success or Error Messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}" style="color: green;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <!-- Preview the current homepage content -->
+        <div style="margin-bottom: 20px;">
+            {% if vcx %}
+                {% for t in vcx %}
+                    <div class="mt-4 text-center">
+                        <h3>Subscribe people details</h3>
+                        
+                        <label name="email" class="form-control" >{{ t.email }}</label><br>
+                        <button type="button" 
+                           
+                        </button>
+                              
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No people Subscribe available.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
+
+            

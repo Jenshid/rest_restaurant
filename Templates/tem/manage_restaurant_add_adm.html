@@ -1,0 +1,227 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title> {% block title %}Add Manage Restaurant Adm{% endblock %}</title>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    display: grid;
+    font-family: "Poppins", sans-serif;
+    background: url("https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+      no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 42rem;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    backdrop-filter: blur(1rem);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 3rem 4rem;
+    color: #fff;
+  }
+  
+  h1 {
+    font-size: 3.6rem;
+    text-align: center;
+  }
+  
+  .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+  }
+  
+  .input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 1.6rem;
+    color: #fff;
+    padding: 2rem 4.5rem 2rem 2rem;
+  }
+  
+  .input-box input::placeholder {
+    color: #fff;
+  }
+  
+  .input-box i {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+  }
+  
+  .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    margin: -1.5rem 0 1.5rem;
+  }
+  
+  .remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 3px;
+  }
+  
+  .remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .remember-forgot a:hover {
+    text-decoration: underline;
+  }
+  
+  .btn {
+    width: 100%;
+    height: 4.5rem;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 4rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .register-link {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 2rem;
+    margin: 2rem 0 1.5rem;
+  }
+  
+  .register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .register-link p a:hover {
+    text-decoration: underline;
+  }
+  .textarea-box {
+    width: 100%;
+    height: 60px; /* Adjust height as needed */
+    background: transparent;
+    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 1.6rem;
+    color: #fff;
+    padding: 2rem;
+    resize: none; /* Disable resizing if you want the height to stay fixed */
+}
+
+.textarea-box::placeholder {
+    color: #fff;
+}
+
+  
+</style>
+</head>
+
+<body>
+
+  <div style="margin-left:300px; margin-top:100px" class="container">
+    <form method="POST" action="{% url 'manage_restaurant_add_adm' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h1>Add Restaurant Details </h1>
+  
+      <!-- Name Field -->
+      <div class="input-box">
+          <input type="text" name="name" class="form-control" placeholder="Restaurant Name" required>
+          <i class='bx bxs-user'></i>
+      </div>
+  
+      <!-- Image Field -->
+      <div class="input-box">
+          <input type="file" name="image" class="form-control" id="image" placeholder="Upload Image">
+      </div>
+
+<!-- Description Field -->
+<div class="input-box">
+  <textarea name="description" class="textarea-box" rows="4" placeholder="Enter restaurant description" required></textarea>
+</div>
+
+
+  
+      <!-- Logo Field -->
+      <div class="input-box">
+          <input type="file" name="logo" class="form-control" id="logo" placeholder="Upload Logo">
+      </div>
+  
+      <!-- Location Type Field -->
+      <div class="input-box">
+          <select name="location_type" class="form-control" id="location_type" required>
+              <option value="" disabled selected>Select Location Type</option>
+              <option value="local">Local</option>
+              <option value="international">nternational</option>
+          </select>
+      </div>
+  
+      <!-- Homepage Order Field -->
+      
+  
+      <!-- Reservation URL Field -->
+      <div class="input-box">
+          <input type="url" name="reservation_url" class="form-control" placeholder="Reservation URL">
+      </div>
+  
+      <!-- Social Media Links -->
+      <div class="input-box">
+          <input type="url" name="instagram_link" class="form-control" placeholder="Instagram Link">
+      </div>
+  
+      <div class="input-box">
+          <input type="url" name="facebook_link" class="form-control" placeholder="Facebook Link">
+      </div>
+  
+      <div class="input-box">
+          <input type="url" name="twitter_link" class="form-control" placeholder="Twitter Link">
+      </div>
+  
+      <!-- Submit Button -->
+      <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+          <button type="submit" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+              Add
+          </button>
+      </div>
+    </form>
+  </div>
+
+</body>
+
+</html>
+{% endblock %}

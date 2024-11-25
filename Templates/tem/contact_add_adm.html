@@ -1,0 +1,211 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>{% block title %}Add New Contact{% endblock %}</title>
+  <style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      
+      html {
+        font-size: 62.5%;
+      }
+      
+      body {
+        display: grid;
+        font-family: "Poppins", sans-serif;
+        background: url("{% static 'sta\img\cont.webp' %}")
+          no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+      
+      .container {
+        width: 100%;
+        max-width: 42rem;
+        margin-left:30%;
+        margin-top:10%;
+        margin-bottom:10%;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 1rem;
+        backdrop-filter: blur(1rem);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        padding: 3rem 4rem;
+        color: #fff;
+      }
+      
+      h1 {
+        font-size: 3.6rem;
+        text-align: center;
+      }
+      
+      .input-box {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+      }
+      
+      .input-box input {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 40px;
+        font-size: 1.6rem;
+        color: #fff;
+        padding: 2rem 4.5rem 2rem 2rem;
+      }
+      
+      .input-box input::placeholder {
+        color: #fff;
+      }
+      
+      .input-box i {
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+      }
+      
+      .remember-forgot {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.4rem;
+        margin: -1.5rem 0 1.5rem;
+      }
+      
+      .remember-forgot label input {
+        accent-color: #fff;
+        margin-right: 3px;
+      }
+      
+      .remember-forgot a {
+        color: #fff;
+        text-decoration: none;
+      }
+      
+      .remember-forgot a:hover {
+        text-decoration: underline;
+      }
+      
+      .btn {
+        width: 100%;
+        height: 4.5rem;
+        background: #fff;
+        border: none;
+        outline: none;
+        border-radius: 4rem;
+        cursor: pointer;
+        font-size: 1.6rem;
+        color: #333;
+        font-weight: 600;
+      }
+      
+      .register-link {
+        font-size: 1.4rem;
+        text-align: center;
+        margin-top: 2rem;
+        margin: 2rem 0 1.5rem;
+      }
+      
+      .register-link p a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .register-link p a:hover {
+        text-decoration: underline;
+      }
+      .textarea-box {
+        width: 100%;
+        height: 60px; /* Adjust height as needed */
+        background: transparent;
+        border: none;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 40px;
+        font-size: 1.6rem;
+        color: #fff;
+        padding: 2rem;
+        resize: none; /* Disable resizing if you want the height to stay fixed */
+    }
+    
+    .textarea-box::placeholder {
+        color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Add New Contact</h1>
+  <form method="POST" action="{% url 'contact_add_adm' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="input-box">
+        <input type="text" id="title" name="title" class="form-control" placeholder="Title">
+    </div>
+
+    <div class="input-box">
+        <input type="text" id="place" name="place" class="form-control" placeholder="Place">
+    </div>
+
+    <div class="input-box">
+        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone">
+    </div>
+
+    <div class="input-box">
+        <textarea id="description" name="description" class="textarea-box" placeholder="Description" rows="4"></textarea>
+    </div>
+
+    <div class="input-box">
+        <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+    </div>
+
+    <div class="input-box">
+        <input type="url" id="pinterest_link" name="pinterest_link" class="form-control" placeholder="Pinterest Link">
+    </div>
+
+    <div class="input-box">
+        <input type="url" id="instagram_link" name="instagram_link" class="form-control" placeholder="Instagram Link">
+    </div>
+
+    <div class="input-box">
+        <input type="url" id="facebook_link" name="facebook_link" class="form-control" placeholder="Facebook Link">
+    </div>
+
+    <div class="input-box">
+        <input type="url" id="twitter_link" name="twitter_link" class="form-control" placeholder="Twitter Link">
+    </div>
+
+    <div class="input-box">
+        <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Contact Email">
+    </div>
+    
+    <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+        <button type="submit" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+            Add Contact
+        </button>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
+{% endblock %}

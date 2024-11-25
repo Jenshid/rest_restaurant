@@ -1,0 +1,360 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+<!DOCTYPE html>
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+          
+            padding: 0;
+          
+            font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+              "Lucida Sans", Arial, sans-serif;
+          }
+          
+          section {
+           
+          
+            justify-content: center;
+          
+            align-items: center;
+          
+            min-height: 100vh;
+          
+           
+            background: url("https://i.postimg.cc/SxB07GjW/beach-bg.jpg") no-repeat;
+          
+            background-position: center;
+          
+            background-size: cover;
+          }
+          
+          .form-box {
+            position: relative;
+          
+           
+          
+            background: transparent;
+          
+            border: none;
+          
+            border-radius: 20px;
+          
+            backdrop-filter: blur(1px) brightness(80%);
+          
+            display: flex;
+          
+            justify-content: center;
+          
+            
+            align-items: center;
+     
+          }
+          
+          h2 {
+            font-size: 2em;
+          
+            color: #fff;
+          
+            text-align: center;
+          }
+          
+          .inputbox {
+            position: relative;
+          
+            margin: 30px 0;
+          
+            width: 310px;
+          
+            border-bottom: 2px solid #fff;
+          }
+          
+          .inputbox label {
+            position: absolute;
+          
+            top: 50%;
+          
+            left: 5px;
+          
+            transform: translateY(-50%);
+          
+            color: #fff;
+          
+            font-size: 1em;
+          
+            pointer-events: none;
+          
+            transition: 0.5s;
+          }
+          
+          /* animations: start */
+          
+          input:focus ~ label,
+          input:valid ~ label {
+            top: -5px;
+          }
+          
+          /* animation:end */
+          
+          .inputbox input {
+            width: 100%;
+          
+            height: 50px;
+          
+            background: transparent;
+          
+            border: none;
+          
+            outline: none;
+          
+            font-size: 1em;
+          
+            padding: 0 35px 0 5px;
+          
+            color: #fff;
+          }
+          
+          .inputbox ion-icon {
+            position: absolute;
+          
+            right: 8px;
+          
+            color: #fff;
+          
+            font-size: 1.2em;
+          
+            top: 20px;
+          }
+          
+          .forget {
+            margin: -10px 0 17px;
+          
+            font-size: 0.9em;
+          
+            color: #fff;
+          
+            display: flex;
+          
+            justify-content: space-between;
+          }
+          
+          .forget label input {
+            margin-right: 3px;
+          }
+          
+          .forget a {
+            color: #fff;
+          
+            text-decoration: none;
+          }
+          
+          .forget a:hover {
+            text-decoration: underline;
+          }
+          
+          button {
+            width: 100%;
+          
+            height: 40px;
+          
+            border-radius: 40px;
+          
+            background-color: #fff;
+          
+            border: none;
+          
+            outline: none;
+          
+            cursor: pointer;
+          
+            font-size: 1em;
+          
+            font-weight: 600;
+          }
+          
+          .register {
+            font-size: 0.9em;
+          
+            color: #fff;
+          
+            text-align: center;
+          
+            margin: 25px 0 10px;
+          }
+          
+          .register p a {
+            text-decoration: none;
+          
+            color: #fff;
+          
+            font-weight: 600;
+          }
+          
+          .register p a:hover {
+            text-decoration: underline;
+          }
+          
+          /* Responsiveness:Start */
+          @media screen and (max-width: 480px) {
+            .form-box {
+              width: 100%;
+              border-radius: 0px;
+            }
+          }
+          /* Responsiveness:End */
+          
+    </style>
+</head>
+<body>
+
+    <section>
+  
+      <div class="form-box">
+  
+        <div class="form-value">
+  
+          <form method="POST"action="{% url 'careers_add_adm' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="text-center">Add Job </h2>
+  
+            <div class="inputbox">
+  
+             <!-- <ion-icon name="mail-outline"></ion-icon>-->
+  
+              <input type="text" id="brand" name="brand" required>
+  
+              <label>Brand</label>
+  
+            </div>
+  
+            <div class="inputbox">
+              
+              <input type="text" id="department" name="department" required>
+  
+              <label>Department</label>
+  
+            </div>
+
+            <div class="inputbox">
+              
+              <input type="text" id="job_title" name="job_title" required>
+  
+              <label>Job Title</label>
+  
+            </div>
+
+            <div class="inputbox">
+              
+              <textarea  id="job_description" name="job_description" rows="10" cols="42" placeholder="Job description" required></textarea><br>
+  
+            </div>
+
+            <div class="inputbox">
+              
+              <input type="email" id="contact_email" name="contact_email" required>
+  
+              <label>Contact Email</label>
+  
+            </div>
+
+            <div class="inputbox">
+              
+              <input type="text" id="job_code" name="job_code" required>
+  
+              <label>Job Code</label>
+  
+            </div>
+
+            <div class="inputbox">
+              
+            <textarea  id="job_responsibilities" name="job_responsibilities" rows="10" cols="42" placeholder="Job Responsibilities"  required></textarea><br>
+  
+              
+  
+            </div>
+
+            <div class="inputbox">
+              
+              <textarea id="job_requirement" name="job_requirement" rows="10" cols="42" placeholder="Job Requirement" required></textarea>
+  
+             
+  
+            </div>
+
+            <div class="inputbox">
+              
+              <input type="text" id="salary_range" name="salary_range" required>
+  
+              <label>Salary Range</label>
+  
+            </div>
+
+            <div class="inputbox">
+              
+              <input type="text" id="age_limit" name="age_limit">
+  
+              <label>Age Limit</label>
+  
+            </div>
+
+            <div class="inputbox">
+              
+              <input type="text" id="place" name="place" required>
+  
+              <label>Place</label>
+  
+            </div>
+
+            <div class="inputbox"style="margin-top:5%;">
+              
+              <select  style="margin-left:50%;" id="employment_type" name="employment_type" class="form-control">
+                <option value="Permanent">Permanent</option>
+                <option value="Contract">Contract</option>
+                <option value="none">None</option>
+            </select>
+  
+              <label>Employment Type</label>
+  
+            </div>
+
+            
+  
+  
+  
+           
+  
+           
+            <button style="margin-top:20%;" type="submit">Add Career</button>
+  
+            <div class="register">
+  
+        
+  
+            </div>
+  
+          </form>
+  
+        </div>
+  
+      </div>
+  
+    </section>
+  
+    <!-- ion-icon installation: Start -->
+  
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  
+    <!--ion-icon installation: End-->
+  
+  </body>
+</html>
+{% endblock %}

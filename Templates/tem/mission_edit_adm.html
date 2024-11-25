@@ -1,0 +1,46 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>{% block title %}Edit Mission Vision  Content{% endblock %}</title>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        </head>
+        <body>
+            <div class="container-center" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+                <div class="form-content" style="border: 1px solid #ddd; padding: 70px; border-radius: 8px; background-color: #f9f9f9;">
+            <div class="container">
+                <h1>Mission Vision Content</h1>
+                <form method="POST" action={% url 'mission_edit_adm' zxc.id %}>
+                    {% csrf_token %}
+                    <div>
+                        <label for="content">Content:</label>
+                        <textarea id="content" name="content" rows="10" class="form-control">{{ zxc.content }}</textarea>
+                    </div>
+                         <!-- Button Container -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                <!-- Confirm Button -->
+                <button type="submit" class="btn btn-save" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                    Save
+                </button>
+                <!-- Back Button -->
+               
+            </div>
+                </form>
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+        </body>
+        </html>
+
+{% endblock %}

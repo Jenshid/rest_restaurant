@@ -1,0 +1,43 @@
+def admin_rg(request):
+    if request.method == 'POST':
+        # Gather form data
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        psw = request.POST.get('psw')
+
+        # Check if the email already exists
+        reg1 = Registration.objects.all()
+        for i in reg1:
+            if i.user.email == email:
+                return redirect('register')  # Redirect to the registration page if email exists
+
+        # Check if the username is already taken
+        user_name = request.POST.get('user_name')
+        for t in User.objects.all():
+            if t.username == user_name:
+                return redirect('register')  # Redirect to the registration page if username is taken
+
+        # Create the admin user
+        user = User.objects.create_user(
+            username=user_name,
+            email=email,
+            password=psw,
+            first_name=first_name,
+            last_name=last_name
+        )
+        user.save()
+
+        # Save the user information in the Registration model as an admin
+        t = Registration()
+        t.Password = psw
+        t.User_role = 'admin'
+        t.user = user
+        t.save()
+
+        # Redirect to admin home after successful registration
+        return redirect('admin_home')  # Replace 'admin_home' with the actual name of your admin home URL
+    
+    else:
+        return render(request, 'registration.html')
+    

@@ -1,0 +1,575 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>{% block title %} Contact Adm {% endblock %}</title>
+    <style>
+        #container1 {
+            font-family: Poppins;
+            background:  #fff;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+          }
+          #container1 * {
+            user-select: none;
+            box-sizing: border-box;
+          }
+          #container1 #controller {
+            background: #fff;
+            max-width: 1200px;
+            max-height: 1000px;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            box-sizing: border-box;
+            padding: 10px;
+            gap: 10px;
+          }
+          #container1 #controller .box {
+            border-radius: 10px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ddd, #444, #ccc, #eee);
+            background-size: 6000px;
+            transition: 0.3s ease-in-out;
+          }
+          #container1 #controller .box:hover {
+            transform: scale(0.95);
+          }
+          #container1 #controller .box #content {
+            transition: 0.3s;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            margin-left:-280px;
+            background: #aabbcc;
+          }
+          #container1 #controller .box #content * {
+            transition: 0.5s;
+          }
+          #container1 #controller .box #content i {
+            font-size: 2.3rem;
+            color: #ddd;
+          }
+          #container1 #controller .box #content h1 {
+            margin: 0;
+            font-size: 1.7rem;
+            font-weight: 300;
+            color: #ddd;
+            text-align: center;
+          }
+          #container1 #controller .box * {
+            transition: 0.3s;
+            opacity: 1;
+            visibility: visible;
+          }
+          #container1 #controller .box#clock {
+            grid-column: 1;
+            grid-row: 1;
+          }
+          #container1 #controller .box#clock #content {
+            background: purple;
+          }
+          #container1 #controller .box#notes {
+            grid-column: 3/span 2;
+            grid-row: 2;
+          }
+          #container1 #controller .box#notes #content {
+            background: #FF9C73;
+          }
+          #container1 #controller .box#menu {
+            grid-column: 4;
+            grid-row: 1;
+          }
+          #container1 #controller .box#menu #content {
+            background: #999;
+          }
+          #container1 #controller .box#weather {
+            grid-column: 1/span 2;
+            grid-row: 2;
+          }
+          #container1 #controller .box#weather #content {
+            background: green;
+          }
+          #container1 #controller .box#sport {
+            grid-column: 4; /* Adjust according to your layout */
+            grid-row: 3;    /* Adjust according to your layout */
+           
+          }
+          #container1 #controller .box#sport #content {
+            background: #e61919;
+          }
+          #container #controller .box#news {
+            grid-column: 1/span 4;
+            grid-row: 3/span 2;
+            border-radius: 8px; /* Rounded corners */
+            transition: transform 0.3s ease;
+          }
+         
+          #container1 #controller .box#news #content {
+            background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+            color: white; /* To make text/icon visible on gradient */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+          }
+          @media only screen and (max-width: 768px) {
+            #container1 #controller .box #content i {
+              font-size: 2rem;
+            }
+            #container1 #controller .box #content h1 {
+              font-size: 1.1rem;
+            }
+            #container1 #controller .box#clock {
+              grid-column: 2/span 2;
+              grid-row: 2;
+            }
+            #container1 #controller .box#notes {
+              grid-column: 1/span 2;
+              grid-row: 2/span 2;
+            }
+            #container1 #controller .box#menu {
+              grid-column: 1/span 4;
+              grid-row: 1;
+            }
+            #container1 #controller .box#weather {
+              grid-column: 1/span 2;
+              grid-row: 4/span 2;
+            }
+            #container1 #controller .box#sport {
+              grid-column: 3/span 2;
+              grid-row: 3/span 3;
+            }
+            #container1 #controller .box#news {
+              grid-column: 1/span 4;
+              grid-row: 6/span 2;
+            }
+          }
+          @media only screen and (max-width: 500px) {
+            #container1 #controller .box#clock {
+              grid-column: 1;
+              grid-row: 3;
+            }
+            #container1 #controller .box#notes {
+              grid-column: 1;
+              grid-row: 2;
+            }
+            #container1 #controller .box#menu {
+              grid-column: 1;
+              grid-row: 1;
+            }
+            #container1 #controller .box#weather {
+              grid-column: 1;
+              grid-row: 4;
+            }
+            #container1 #controller .box#sport {
+              grid-column: 1;
+              grid-row: 5;
+            }
+           
+          
+         
+          
+            #container1 #controller .box#news {
+              grid-column: 1;
+              grid-row: 6;
+            }
+          }
+
+          #container1 #controller .box#manage {
+            grid-column: 4; /* Adjust according to your layout */
+            grid-row: 5;    /* Adjust according to your layout */
+        }
+        
+        #container1 #controller .box#manage #content {
+            background: #f0f0f0; /* Light background color for description */
+            border: 1px solid #ccc; /* Optional border */
+            border-radius: 10px; /* Rounded corners */
+            padding: 15px; /* Add some padding */
+        }
+        #container1 #controller .box#manage {
+          grid-column: 2; /* Adjust according to your layout */
+          grid-row: 4;    /* Adjust according to your layout */
+      }
+
+      #container1 #controller .box#manage #content {
+        background: #e1eeff; /* Facebook's brand color */
+    }
+
+
+          #container1 #controller .box#facebook {
+            grid-column: 2; /* Adjust according to your layout */
+            grid-row: 3;    /* Adjust according to your layout */
+        }
+        
+        #container1 #controller .box#facebook #content {
+            background: #4267B2; /* Facebook's brand color */
+        }
+        
+        #container1 #controller .box#facebook #content i {
+            color: #fff; /* Icon color */
+        }
+        
+        #container1 #controller .box#facebook #content h1 {
+            color: #fff; /* Text color */
+        }
+
+        #container1 #controller .box#description {
+          grid-column: 1; /* Adjust according to your layout */
+          grid-row: 4;    /* Adjust according to your layout */
+      }
+      
+      #container1 #controller .box#description #content {
+          background: yellow; /* Light background color for description */
+          border: 1px solid #ccc; /* Optional border */
+          border-radius: 10px; /* Rounded corners */
+          padding: 15px; /* Add some padding */
+      }
+      
+      #container1 #controller .box#description #content i {
+          font-size: 2rem; /* Icon size */
+          color: #333; /* Dark color for icon */
+      }
+      
+      #container1 #controller .box#description #content h1 {
+          color: #333; /* Dark text color for header */
+          margin-bottom: 10px; /* Space below the header */
+      }
+      
+      #container1 #controller .box#description #content p {
+          color: #666; /* Lighter color for description text */
+          font-size: 1rem; /* Font size for description */
+          line-height: 1.5; /* Spacing between lines */
+      }
+      
+      #container1 #controller .box#title {
+      grid-column: 2/span 2;
+      grid-row: 1;
+        
+    }
+    
+    #container1 #controller .box#title #content {
+      
+        background: #B8001F; /* Choose a unique color for the Title section, e.g., green */
+    }
+    
+    #container1 #controller .box#title #content i {
+        color: #fff; /* Icon color */
+    }
+    
+    #container1 #controller .box#title #content h1 {
+        color: #fff; /* Text color */
+    }
+      
+
+          #container1 #controller .box#twitter {
+            grid-column: 3; /* Adjust according to your layout */
+            grid-row: 3;    /* Adjust according to your layout */
+        }
+        
+        #container1 #controller .box#twitter #content {
+            background: #1DA1F2; /* Twitter's brand color */
+        }
+        
+        #container1 #controller .box#twitter #content i {
+            color: #fff; /* Icon color */
+        }
+        
+        #container1 #controller .box#twitter #content h1 {
+            color: #fff; /* Text color */
+        }
+        
+          @media only screen and (max-width: 170px) {
+            #container1 #controller .box #content {
+              gap: 20px;
+            }
+            #container1 #controller .box #content h1 {
+              font-size: 0.9rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-weight: 400;
+            }
+            #container1 #controller .box #content:hover h1 {
+              opacity: 1;
+            }
+          }
+          #container1 #viewer {
+            position: fixed;
+            top: 0px;
+            left: 50%;
+            max-width: 1200px;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            border-radius: 10px;
+            overflow: hidden;
+            box-sizing: border-box;
+            margin: 10px 0 0 0;
+            transition: 0.3s;
+            visibility: hidden;
+            opacity: 0;
+            cursor: pointer;
+            transform: translate(-50%, -100%) scale(1);
+          }
+          #container1 #viewer.active {
+            transform: translateX(-50%) scale(1);
+            visibility: visible;
+            opacity: 1;
+          }
+          #container1 #viewer #content {
+            transition: 0.3s;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            background: #000e;
+          }
+          #container1 #viewer #content * {
+            transition: 0.5s;
+          }
+          #container1 #viewer #content i {
+            font-size: 2.3rem;
+            color: #fff;
+          }
+          #container1 #viewer #content h1 {
+            font-size: 1.7rem;
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+          }
+          #container1 #viewer #closeBtn {
+            transform: translateX(-50%);
+            color: #fff;
+            width: auto;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            outline: none;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            transition: 0.3s;
+          }
+          #container1 #viewer #closeBtn i {
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border-radius: 50%;
+          }
+          #container1 #viewer #closeBtn:hover {
+            transform: translate(-50%, -20px) scale(1.5);
+          }
+          #container1 #viewer #closeBtn:hover i {
+            background: #ddd3;
+          }
+          #container1 .loading {
+            background: linear-gradient(-45deg, #ddd, #444, #ccc, #eee, #ddd, #444, #ccc, #eee);
+            background-repeat: no-repeat;
+            background-size: 6000px;
+            animation: 2s loading ease-in-out alternate infinite;
+            border-radius: 10px;
+          }
+          #container1 .loading * {
+            opacity: 0 !important;
+            visibility: hidden !important;
+          }
+          #container1 .loading #content * {
+            opacity: 0 !important;
+            transform: translateY(-100%);
+          }
+          
+          @keyframes loading {
+            from {
+              background-position: 100%;
+            }
+            to {
+              background-position: 0%;
+            }
+          }
+          .bdy {
+            margin: 0;
+            background: #fff;
+          }
+    </style>
+</head>
+<body class="bdy">
+{% if bmw %}
+
+  <div id="container1">
+    <div id="controller">
+
+
+      <div id="title" class="box loading">
+        <div id="content">
+            <i class="fas fa-heading"></i> <!-- Title icon (Heading icon) -->
+            <h1>Title</h1>
+            <label style="display:none">{{ bmw.title }}</label>
+        </div>
+    </div>
+  
+      <div id="clock" class="box loading">
+        <div id="content">
+          <i class="fas fa-map-marker-alt"></i> 
+          <h1>Place</h1>
+          <label style="display:none">{{ bmw.place }}</label>
+        </div>
+      </div>
+      <div id="notes" class="box loading">
+        <div id="content">
+          <i class="fas fa-envelope"></i> 
+          <h1>Email</h1>
+          <label style="display:none">{{ bmw.email }}</label>
+        </div>
+      </div>
+  
+      <div id="menu" class="box loading">
+        <div id="content">
+          <i class="fas fa-phone-alt"></i>
+          <h1>Phone</h1>
+          <label style="display:none">{{ bmw.phone }}</label>
+        </div>
+      </div>
+  
+      <div id="weather" class="box loading">
+        <div id="content">
+          <i class="fas fa-envelope"></i> 
+          <h1>Contact Email</h1>
+          <label style="display:none">{{ bmw.contact_email }}</label>
+        </div>
+      </div>
+      <div id="sport" class="box loading">
+        <div id="content">
+            <i class="fab fa-pinterest"></i> <!-- Use Font Awesome Pinterest icon -->
+            <h1>Pinterest</h1>
+            <label style="display:none">{{ bmw.pinterest_link }}</label>
+        </div>
+    </div>
+    
+    <div id="news" class="box loading">
+      <div id="content">
+          <i class="fab fa-instagram"></i> <!-- Use Font Awesome Instagram icon -->
+          <h1>Instagram</h1>
+          <label style="display:none">{{ bmw.instagram_link }}</label>
+      </div>
+  </div>
+  
+
+      <div id="facebook" class="box loading">
+        <div id="content">
+            <i class="fab fa-facebook-f"></i> <!-- Use Font Awesome Facebook icon -->
+            <h1>Facebook</h1>
+            <label style="display:none">{{ bmw.facebook_link }}</label>
+        </div>
+    </div>
+    
+
+    <div id="twitter" class="box loading">
+      <div id="content">
+          <i class="fab fa-twitter"></i> <!-- Use Font Awesome Twitter icon -->
+          <h1>Twitter</h1>
+          <label style="display:none">{{ bmw.twitter_link }}</label>
+      </div>
+  </div>
+
+  <div id="description" class="box loading">
+    <div id="content">
+        <i class="fas fa-info-circle"></i> <!-- Info icon -->
+        <h1>Description</h1>
+        <label style="display:none">{{ bmw.description }}</label>
+    </div>
+</div>
+
+  
+<div id="manage" class="box loading">
+  <div id="content" style=" margin-right:70%;display: flex; align-items: center; justify-content: space-between;">
+      <a href="{% url 'contact_edit_adm' bmw.id %}">
+          <input type="button" 
+                 value="Edit" 
+                 style="margin-right:70%;background-color:  #00b906; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 10px;">
+      </a>
+      <button type="button" 
+              onclick="if(confirm('Are you sure you want to delete this content?')) location.href='{% url 'contact_delete_adm' bmw.id %}'"
+              style="background-color: #e70000; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 10px;">
+          Delete
+      </button>
+  </div>
+</div>
+
+  
+    </div>
+    <!-- Viewer Content -->
+    <div id="viewer" style="margin-left:75px">
+      <div id="content" style="margin-left:-200px">
+        <h1>Bu bir örnektir</h1>
+      </div>
+      <button style="margin-left:80px" id="closeBtn"><i class="fas fa-chevron-up"></i></button>
+    </div>
+  </div>
+
+  {% else %}
+  <p style=" margin-left:2%; margin-top:5%;text-align: center; color: #999;">No Contact Details uploaded yet.</p>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+      <!-- Add Button -->
+      <button type="button" 
+              onclick="location.href='{% url 'contact_add_adm' %}'"
+              style=" margin-left:40%; margin-top:7%; background-color: #08c59a; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+          Add
+      </button>
+  </div>
+  
+
+{% endif %}
+
+
+<script>
+    function loading() {
+        let loadingBoxAll = document.querySelectorAll(".loading");
+        loadingBoxAll.forEach((e, len) =>
+            e.children.length > 0
+                ? setTimeout(() => e.classList.remove("loading"), 2000 /*((len - 1) * 300)*/)
+                : null
+        );
+    }
+    loading();
+    
+    document.querySelectorAll("#container1 #controller .box").forEach((e) => {
+        e.onclick = () => {
+            //document.querySelector("#container1 #viewer").classList.add("loading");
+            //loading();
+            document.querySelector(
+                "#container1 #viewer #content"
+            ).style.background = getComputedStyle(e.querySelector("#content")).background;
+            document.querySelector("#container1 #viewer").classList.add("active");
+            document.querySelector("#container1 #viewer #content").innerHTML = `
+            <i class="${e.querySelector("i").classList}"></i>
+            <h1>${e.querySelector("label").textContent}</h1>
+            `;
+        };
+    });
+    
+    document.querySelector("#container1 #viewer #closeBtn").onclick = () =>
+        document.querySelector("#container1 #viewer").classList.remove("active");
+    
+</script>
+</body>
+</html>
+{% endblock %}

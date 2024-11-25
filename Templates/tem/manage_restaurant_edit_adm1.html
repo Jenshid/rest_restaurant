@@ -1,0 +1,182 @@
+{% extends 'tem/nave.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Edit Restaurant Details</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: sans-serif;
+              }
+              body {
+                margin: auto;
+                display: flex;
+               
+                align-items: center;
+               
+                background-image: url({% static 'sta\img\edit pages.jpg' %});
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+              }
+              .container {
+                width: 650px;
+                padding: 25px;
+                margin-left:20%;
+                margin-top:10%;
+
+                background: transparent;
+                overflow: hidden;
+                border-radius: 10px;
+                backdrop-filter: blur(10px);
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+              }
+              .container h2 {
+                font-size: 25px;
+                font-weight: 500;
+                text-align: left;
+                color: white;
+                padding-bottom: 5px;
+                border-bottom: 1px solid #fff;
+              }
+              .content {
+                display: flex;
+                flex-wrap: wrap;
+                padding: 20px 0;
+                justify-content: space-between;
+              }
+              .box-content {
+                display: flex;
+                flex-wrap: wrap;
+                width: 50%;
+                padding-bottom: 15px;
+              }
+              .box-content:nth-child(2n) {
+                justify-content: end;
+              }
+              .box-content label,
+              .gender-title {
+                width: 95%;
+                color: #fff;
+                margin: 5px 0;
+                font-weight: bold;
+              }
+              .gender-title {
+                font-size: 18px;
+              }
+              .box-content input {
+                height: 40px;
+                width: 95%;
+                border-radius: 10px;
+                border: 1px solid #fff;
+                outline: none;
+                padding: 0 10px;
+              }
+              .gender label {
+                padding: 0 20px 0 5px;
+                font-size: 15px;
+                color: #fff;
+              }
+              .gender label,
+              input:hover {
+                cursor: pointer;
+              }
+              .alert p {
+                font-size: 18px;
+                color: #fff;
+              }
+              .alert a {
+                text-decoration: none;
+                color: aqua;
+                line-height: 1.5;
+                text-align: justify;
+                margin-bottom: 10px;
+              }
+              .alert a:hover {
+                cursor: pointer;
+                text-decoration: underline;
+                font-style: italic;
+              }
+              .button-container button {
+                width: 100%;
+                padding: 15px 0;
+                background-image: linear-gradient(to right, blue, skyblue);
+                border: none;
+                outline: none;
+                border-radius: 10px;
+                color: #fff;
+                font-size: 18px;
+                margin: 10px 0;
+              }
+              .button-container button:hover {
+                cursor: pointer;
+                background-image: linear-gradient(to right, skyblue, blue);
+              }
+              
+
+              
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form action="" method="post">
+                <h2>Registration</h2>
+                <div class="content">
+    
+                    <div class="box-content">
+                        <label for="fullname">FullName</label>
+                        <input type="text" name="name" placeholder="Enter your FullName" required>
+                    </div>
+    
+                    <div class="box-content">
+                        <label for="fullname">Username</label>
+                        <input type="text" name="name" placeholder="Enter Username" required>
+                    </div>
+    
+                    <div class="box-content">
+                        <label for="fullname">Email</label>
+                        <input type="email" name="email" placeholder="Enter your Email" required>
+                    </div>
+    
+                    <div class="box-content">
+                        <label for="fullname">Phone number</label>
+                        <input type="number" name="num" placeholder="Enter your Phone-num" required>
+                    </div>
+    
+                    <div class="box-content">
+                        <label for="fullname">Password</label>
+                        <input type="password" name="Fullname" placeholder="Enter your new-password" required>
+                    </div>
+    
+                    <div class="box-content">
+                        <label for="fullname">Conform-password</label>
+                        <input type="password" name="Fullname" placeholder="Re-Enter your password" required>
+                    </div>
+    
+                    <span class="gender-title">Gender</span>
+                    <div class="gender">
+                        <input type="radio" name="gen" value="Male"><label>Male</label>
+                        <input type="radio" name="gen" value="Female"><label>FeMale</label>
+                        <input type="radio" name="gen" value="Others"><label>Others</label>
+                    </div>
+                </div>
+    
+                <div class="alert">
+                    <p>By clicking sign up, you agree to our <a href="#">terms,</a> <a href="#">privacy policy,</a>and <a href="#">cookies policy</a> you may receive SMS notification from us can opt out at any time.</p>
+                </div>
+                <div class="button-container">
+                    <button>Register</button>
+                </div>
+            </form>
+        </div>
+                </body>
+                </html>
+                {% endblock %}
+            
+                

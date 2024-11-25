@@ -1,0 +1,58 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Media_edit_adm{% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Include TinyMCE JavaScript -->
+    <script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+    <script>
+      // Initialize TinyMCE
+      tinymce.init({
+          selector: 'textarea[name="content"]',  // Select only the 'content' textarea
+          plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+          toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | fontsizeselect',
+          height: 360,
+          width: 720,
+      });
+    </script>
+</head>
+<body>
+    <div class="container-center" style="max-width: 900px; margin: 0 auto; padding: 20px;">
+        <div class="form-content" style="border: 1px solid #ddd; padding: 70px; border-radius: 8px; background-color: #f9f9f9;">
+            <div class="container">
+                <h1>Edit Media Adm</h1>
+                <form method="POST" action="{% url 'media_edit_adm' zse.id %}">
+                    {% csrf_token %}
+                    <div>
+                        <label for="title">Title:</label><br>
+                        <textarea id="title" name="title" cols="45" rows="3" class="form-control">{{ zse.title }}</textarea><br>
+                        <label for="content">Content:</label><br>
+                        <!-- This textarea will have TinyMCE editor -->
+                        <textarea id="content" name="content" cols="45" rows="12" class="form-control">{{ zse.content }}</textarea><br>
+                    </div>
+                    <!-- Button Container -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px;">
+                        <!-- Confirm Button -->
+                        <button type="submit" class="btn btn-save" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px;">
+                            Save
+                        </button>
+                        <!-- Back Button -->
+                    </div>
+                </form>
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

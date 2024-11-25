@@ -1,0 +1,43 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Image</title>
+</head>
+<body>
+    <h1>Edit Image</h1>
+    
+    <!-- Display current image -->
+    <div>
+        <h3>Current Image:</h3>
+        {% if ert.img.url %}
+            <img src="{{ ert.img.url }}" alt="Current Image" style="width:200px; height:auto;">
+        {% else %}
+            <p>No image uploaded yet.</p>
+        {% endif %}
+    </div>
+
+    <!-- Form to upload a new image -->
+    <form method="post" action="{% url 'img_rest_edit_adm' ert.id %}"enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image">Upload New Image:</label>
+        <input type="file" name="image" required>
+        <button type="submit">Update Image</button>
+    </form>
+
+    <!-- Display success or error messages -->
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Back link -->
+
+</body>
+</html>
+{% endblock %}

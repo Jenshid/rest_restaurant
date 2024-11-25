@@ -1,0 +1,220 @@
+{% extends 'tem/nave.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pricing Table</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+<link rel="stylesheet" href="style.css">
+{% block content %}
+<style>
+    /* by Jamal Hassouni*/
+@import url("https://fonts.googleapis.com/css?family=Roboto:300");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif !important;
+}
+section {
+  width: 100%;
+  height: 100vh;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  
+
+}
+.card {
+  position: relative;
+  max-width: 300px;
+  height: -20%;
+  background: linear-gradient(-45deg, #fe0847, #feae3f);
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-top:50%;
+  padding: 40px 20px;
+  -webkit-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.card:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.col-sm-4:nth-child(1) .card,
+.col-sm-4:nth-child(1) .card .title .fa {
+  background: linear-gradient(-45deg, #f403d1, #64b5f6);
+  margin-right:67%;
+  margin-top:5%;
+}
+.col-sm-4:nth-child(2) .card,
+.col-sm-4:nth-child(2) .card .title .fa {
+  background: linear-gradient(-45deg, #ffec61, #f321d7);
+  margin-right:35%;
+  margin-top:-65%;
+  margin-bottom:60%;
+}
+.col-sm-4:nth-child(3) .card,
+.col-sm-4:nth-child(3) .card .title .fa {
+  background: linear-gradient(-45deg, #24ff72, #9a4eff);
+  margin-left:70%;
+  margin-top:-110%;
+  margin-bottom:60%;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 20%;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+  -webkit-transform: skewY(-5deg) scale(1.5);
+  transform: skewY(-5deg) scale(1.5);
+}
+.title .fa {
+  color: #fff;
+  font-size: 60px;
+  width: 100px;
+  height: 50x;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20%;
+  -webkit-box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+.title h2 {
+  position: relative;
+  margin: 30px 0 0;
+  padding: 0;
+  margin-left:35%;
+  margin-bottom:10%;
+  color: #fff;
+  font-size: 30px;
+  z-index: 3;
+  
+}
+.price,
+.option {
+  position: relative;
+  z-index: 2;
+}
+.price h4 {
+  margin: 0;
+  
+  padding: 20px 0;
+  color: #fff;
+  font-size: 27px;
+}
+.option ul {
+  margin: 0;
+  padding: 0;
+}
+.option ul li {
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+  color: #fff;
+  font-size: 16px;
+}
+.card a {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  color: black;
+  width: 150px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 40px;
+  display: block;
+  text-align: center;
+  margin: 20px auto 0;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.card a:hover {
+  text-decoration: none;
+}
+
+
+.info-box {
+    display: inline-block;         /* Make it an inline-block so it wraps text but behaves like a block */
+    padding: 8px 12px;             /* Add some padding around the content */
+        /* Light gray background */
+    border: 1px solid #ddd;        /* Add a light border */
+    border-radius: 5px;            /* Rounded corners for the box */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted look */
+    font-weight: normal;           /* Ensure the text is regular weight */
+    max-width: 400px;              /* Limit the width of each box */
+    word-wrap: break-word;         /* Allow long words to break and wrap in the box */
+    white-space: normal;           /* Prevent text from getting cut off */
+  }
+  
+  .info-box:hover {
+    
+    border-color: #008CBA;      /* Change the border to blue on hover */
+    transition: all 0.3s ease;  /* Smooth transition effect */
+  }
+  
+</style>    
+</head>
+
+<body>
+  <section>
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+        {% if dfg %}
+        {% for e in dfg %}
+         
+          <div class="col-sm-4">
+            <div class="card text-center">
+              <div class="title">
+                <i class="fa fa-plane" aria-hidden="true"></i>
+                <h2>{{ e.career.job_title }}</h2>
+              </div>
+              <div class="price">
+                <h4>Company: <span class="info-box">{{ e.career.brand }}</span></h4>
+              </div>
+              <div class="option">
+                <ul>
+                  <li><i class="fa fa-check" aria-hidden="true"></i> Applied Department: <span class="info-box">{{ e.career.department }}</span></li>
+                  <li><i class="fa fa-times" aria-hidden="true"></i> Age Limit: <span class="info-box">{{ e.career.age_limit }}</span></li>
+                  <li><i class="fa fa-times" aria-hidden="true"></i> Salary Range: <span class="info-box">{{ e.career.salary_range }}</span></li>
+                  <li><i class="fa fa-check" aria-hidden="true"></i> Full Name: <span class="info-box">{{ e.full_name }}</span></li>
+                  <li><i class="fa fa-check" aria-hidden="true"></i> Email Address: <span class="info-box">{{ e.email }}</span></li>
+                  <li><i class="fa fa-check" aria-hidden="true"></i> Phone Number: <span class="info-box">{{ e.phone }}</span></li>
+                  <li><i class="fa fa-times" aria-hidden="true"></i> Address: <span class="info-box">{{ e.address }}</span></li>
+                  <li><i class="fa fa-times" aria-hidden="true"></i> Employment Type: <span class="info-box">{{ e.career.employment_type }}</span></li>
+                  <li><i class="fa fa-times" aria-hidden="true"></i> Place: <span class="info-box">{{ e.career.place }}</span></li>
+                </ul>
+                <a href="{{ e.cv.url }}" target="_blank" style="display: inline-block; margin: 10px; color: #007BFF; text-decoration: none;">
+                  Download Resume
+                </a>
+              </div>
+
+              <a onclick="if(confirm('Are you sure you want to delete this content?')) location.href='{% url 'views_application_delete_adm' e.id %}'" target="_blank" style="display: inline-block; margin: 10px; color: #007BFF; text-decoration: none;">
+                Delete
+              </a>
+
+            </div>
+          </div>
+         {% endfor %}
+         {% endif%} 
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+</body>
+{% endblock %}
+</html>
